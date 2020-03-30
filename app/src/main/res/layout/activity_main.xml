@@ -7,19 +7,42 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="164dp"
-        tools:layout_editor_absoluteY="191dp" />
+        android:id="@+id/buttonPlay"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="132dp"
+        android:layout_marginEnd="105dp"
+        android:layout_marginBottom="44dp"
+        android:text="play "
+        app:layout_constraintBottom_toTopOf="@+id/buttonPause"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="153dp"
-        tools:layout_editor_absoluteY="263dp" />
+        android:id="@+id/buttonPause"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="105dp"
+        android:text="pause"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPlay" />
+
+    <SeekBar
+        android:id="@+id/seekBar4"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="398dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
