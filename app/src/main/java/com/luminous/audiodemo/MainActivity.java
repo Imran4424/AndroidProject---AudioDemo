@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class MainActivity extends AppCompatActivity {
     private final String PLAY_TEXT = "PLAY";
     private final String PAUSE_TEXT = "PAUSE";
@@ -32,7 +35,10 @@ public class MainActivity extends AppCompatActivity {
 
         mediaPlayer = MediaPlayer.create(this, R.raw.sheyal_sharosh);
         playPauseButton = (Button) findViewById(R.id.buttonPlayPause);
+
         playTimeSeekBar = (SeekBar) findViewById(R.id.seekBarPlayStatus);
+        playTimeSeekBar.setMax(mediaPlayer.getDuration());
+
         volumeSeekBar = (SeekBar) findViewById(R.id.seekVolume);
         volumeSeekBar.setMax(maxVolume);
 
@@ -41,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         playTimeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                
+                mediaPlayer.seekTo(i);
             }
 
             @Override
@@ -72,6 +78,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        new Timer().scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                playTimeSeekBar.setProgress(mediaPlayer.getCurrentPosition());
+            }
+        }, 0, 500);
     }
 
     public void playPause(View v) {
@@ -91,5 +104,6 @@ public class MainActivity extends AppCompatActivity {
 
         mediaPlayer = MediaPlayer.create(this, R.raw.sheyal_sharosh);
         playPauseButton.setText(PLAY_TEXT);
+        playTimeSeekBar.setProgress(0);
     }
 }
