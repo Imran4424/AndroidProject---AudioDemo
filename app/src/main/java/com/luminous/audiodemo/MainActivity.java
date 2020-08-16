@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     SeekBar playTimeSeekBar;
     SeekBar volumeSeekBar;
     int maxVolume;
-    int minVolume;
+    int currentVolume;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 
         mediaPlayer = MediaPlayer.create(this, R.raw.sheyal_sharosh);
         playPauseButton = (Button) findViewById(R.id.buttonPlayPause);
@@ -37,7 +38,24 @@ public class MainActivity extends AppCompatActivity {
 
         playPauseButton.setText(PLAY_TEXT);
 
-        volumeSeekBar.setProgress(maxVolume);
+        playTimeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        volumeSeekBar.setProgress(currentVolume);
         volumeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
